@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Teachers Day — Index</title>
+  <style>
+    :root{--bg:#fff;--fg:#0b1220;--accent:#0b6efd;--header-h:64px}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--fg)}
+    header{height:var(--header-h);display:flex;align-items:center;justify-content:space-between;padding:0 1rem;border-bottom:1px solid #eee;position:sticky;top:0;background:linear-gradient(#ffffffcc,#ffffffcc);backdrop-filter:blur(6px);z-index:10}
+    .brand{display:flex;align-items:center;gap:.75rem}
+    .brand h1{font-size:1rem;margin:0}
+    .menu-toggle{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;background:transparent;cursor:pointer;border-radius:8px}
+    .menu-toggle:focus{outline:2px solid #cfe3ff}
+    nav{position:absolute;top:var(--header-h);left:0;right:0;background:var(--bg);border-bottom:1px solid #eee;transform-origin:top;transition:transform .22s ease,opacity .22s ease;box-shadow:0 6px 18px rgba(16,24,40,.06)}
+    nav[aria-hidden="true"]{transform:scaleY(0);opacity:0;pointer-events:none}
+    nav[aria-hidden="false"]{transform:scaleY(1);opacity:1;pointer-events:auto}
+    .menu-list{display:flex;flex-direction:column;gap:.25rem;padding:.5rem;margin:0;list-style:none}
+    .menu-list a{display:inline-flex;align-items:center;gap:.6rem;padding:.6rem .8rem;border-radius:8px;color:var(--fg);text-decoration:none;border:1px solid transparent}
+    .menu-list a:hover{background:#f1f7ff;color:var(--accent);border-color:#e6f0ff}
+    main{padding:1rem;max-width:980px;margin:1rem auto}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.6rem}
+    .card{display:block;padding:.7rem 1rem;border-radius:8px;border:1px solid #eee;text-decoration:none;color:var(--fg);background:#fff;box-shadow:0 1px 0 rgba(16,24,40,.02)}
+    .card:hover{box-shadow:0 6px 20px rgba(16,24,40,.06)}
+    footer{padding:1rem;text-align:center;color:#666;font-size:.9rem}
+    @media(min-width:900px){.menu-toggle{display:none}nav{position:static;transform:none;opacity:1;border-bottom:0;background:transparent;box-shadow:none}.menu-list{flex-direction:row;gap:.4rem}.menu-list a{padding:.4rem .6rem}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="" alt="" aria-hidden="true" style="width:40px;height:40px;border-radius:8px;background:#eee"/>
+      <h1>Teachers Day</h1>
+    </div>
+
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteNav" title="Toggle menu">
+      <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true" focusable="false"><rect width="20" height="2" y="0" rx="1"/><rect width="20" height="2" y="6" rx="1"/><rect width="20" height="2" y="12" rx="1"/></svg>
+    </button>
+
+    <nav id="siteNav" aria-hidden="true">
+      <ul class="menu-list" id="menuList"></ul>
+    </nav>
+  </header>
+
+  <main role="main">
+    <h2>Welcome to Teachers Day</h2>
+    <p>Click any button below or use the menu to visit a teacher's page.</p>
+
+    <section>
+      <h3>All Teachers</h3>
+      <div id="buttons" class="grid"></div>
+    </section>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> Teachers Day
+  </footer>
+
+  <script>
+    (function(){
+      const pages = [
+        "amisha-ma'am.html",
+        "aqsa-ma'am.html",
+        "awasathi-sir.html",
+        "bhavya-sir.html",
+        "devanshi-ma'am.html",
+        "devi-ma'am.html",
+        "dhanya-ma'am.html",
+        "dipal-ma'am.html",
+        "gunjan-ma'am.html",
+        "hetal-ma'am.html",
+        "jalpa-ma'am.html",
+        "jayesh-sir.html",
+        "jigna-ma'am.html",
+        "ketan-sir.html",
+        "keval-sir.html",
+        "khushboo-ma'am.html",
+        "khyati-ma'am.html",
+        "krisha-ma'am.html",
+        "krupa-ambaliya-ma'am.html",
+        "krupa-trivedi-ma'am.html",
+        "krutika-ma'am.html",
+        "mital-sir.html",
+        "nisha-ma'am.html",
+        "parita-ma'am.html",
+        "sanjay-sir.html",
+        "shweta-ma'am.html",
+        "smita-ma'am.html",
+        "sneha-ma'am.html",
+        "umangi-ma'am.html"
+      ];
+
+      const menuList = document.getElementById('menuList');
+      const buttons = document.getElementById('buttons');
+      const menuToggle = document.getElementById('menuToggle');
+      const siteNav = document.getElementById('siteNav');
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      function setNavOpen(open){
+        siteNav.setAttribute('aria-hidden', String(!open));
+        menuToggle.setAttribute('aria-expanded', String(open));
+      }
+      menuToggle.addEventListener('click', ()=>{
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        setNavOpen(!expanded);
+      });
+
+      pages.forEach(fn=>{
+        const href = encodeURIComponent(fn).replace(/%2F/g, '/');
+        const displayName = fn.replace(/\.html$/,'').replace(/-/g,' ');
+        
+        // Menu link
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = href;
+        a.textContent = displayName;
+        li.appendChild(a);
+        menuList.appendChild(li);
+
+        // Button card
+        const card = document.createElement('a');
+        card.className = 'card';
+        card.href = href;
+        card.textContent = displayName;
+        buttons.appendChild(card);
+      });
+    })();
+  </script>
+</body>
+</html>
