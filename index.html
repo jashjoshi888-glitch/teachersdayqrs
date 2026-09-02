@@ -107,7 +107,8 @@
       });
 
       pages.forEach(fn=>{
-        const href = encodeURIComponent(fn).replace(/%2F/g, '/');
+        // FIX: Removed encodeURIComponent. Static hosts often 404 on %27 (apostrophe).
+        const href = fn; 
         const displayName = fn.replace(/\.html$/,'').replace(/-/g,' ');
         
         // Menu link
