@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Happy Teachers' Day</title>
+  <meta name="theme-color" content="#FFDE59">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root{
+      --ink:#000; --paper:#fff; --bg:#FFDE59;
+      --pink:#FF70A6; --cyan:#00E5FF; --lime:#A3E635;
+      --bd:3px solid var(--ink); --sh:6px 6px 0 var(--ink);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      min-height:100vh;display:flex;flex-direction:column;align-items:center;
+      background:var(--bg);color:var(--ink);
+      font-family:"Space Grotesk",system-ui,sans-serif;font-weight:500;
+    }
+
+    /* ticker */
+    .ticker{width:100%;background:var(--ink);color:var(--bg);overflow:hidden}
+    .ticker-track{display:flex;width:max-content;animation:tick 16s linear infinite}
+    .ticker-track span{
+      font-family:"Space Mono",monospace;font-weight:700;text-transform:uppercase;
+      letter-spacing:.18em;font-size:.8rem;padding:.6rem 0;white-space:nowrap;
+    }
+    @keyframes tick{to{transform:translateX(-50%)}}
+
+    main{width:100%;max-width:430px;padding:28px 20px 48px;display:flex;flex-direction:column;gap:26px}
+
+    /* initials badge */
+    .frame{background:var(--paper);border:var(--bd);box-shadow:var(--sh);
+      padding:10px;transform:rotate(-2deg);max-width:280px;margin:0 auto}
+    .ph{aspect-ratio:4/5;border:var(--bd);overflow:hidden;background:var(--cyan);
+      display:grid;place-items:center}
+    .ph .init{font-size:clamp(3.2rem,15vw,4.5rem);font-weight:700;
+      letter-spacing:-.03em;text-transform:uppercase}
+    .ph .star{display:none;place-items:center}
+    .ph.missing .init{display:none}
+    .ph.missing .star{display:grid}
+
+    /* heading + name */
+    .hello{text-align:center}
+    h1{font-size:clamp(1.6rem,7vw,2.2rem);font-weight:700;text-transform:uppercase;
+      letter-spacing:-.02em;line-height:1.05}
+    .name{display:inline-block;background:var(--pink);border:var(--bd);box-shadow:var(--sh);
+      padding:.5rem 1rem;margin-top:14px;
+      font-size:clamp(1.3rem,6vw,1.8rem);font-weight:700;text-transform:uppercase}
+
+    /* cards */
+    .card{position:relative;background:var(--paper);border:var(--bd);box-shadow:var(--sh);
+      padding:26px 20px 20px;margin-top:10px}
+    .card .tag{position:absolute;top:-14px;left:14px;border:2px solid var(--ink);
+      background:var(--pink);
+      font-family:"Space Mono",monospace;font-weight:700;font-size:.75rem;
+      text-transform:uppercase;letter-spacing:.12em;padding:.25rem .7rem}
+    .card p{font-size:1.02rem;line-height:1.6}
+    .card .msg{white-space:pre-line}
+
+    footer{margin-top:auto;width:100%;background:var(--ink);color:var(--paper);text-align:center;
+      font-family:"Space Mono",monospace;font-size:.75rem;letter-spacing:.08em;padding:.8rem 12px}
+    footer svg{vertical-align:-2px}
+
+    @media (prefers-reduced-motion: reduce){ .ticker-track{animation:none} }
+  </style>
+</head>
+<body>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>★ Happy Teachers' Day&nbsp;&nbsp;★&nbsp;&nbsp;Thank you for everything&nbsp;&nbsp;★&nbsp;&nbsp;Happy Teachers' Day&nbsp;&nbsp;★&nbsp;&nbsp;Thank you for everything&nbsp;&nbsp;</span>
+      <span>★ Happy Teachers' Day&nbsp;&nbsp;★&nbsp;&nbsp;Thank you for everything&nbsp;&nbsp;★&nbsp;&nbsp;Happy Teachers' Day&nbsp;&nbsp;★&nbsp;&nbsp;Thank you for everything&nbsp;&nbsp;</span>
+    </div>
+  </div>
+
+  <main>
+    <div class="frame">
+      <div class="ph missing" id="ph">
+        <span class="init" id="init"></span>
+        <span class="star"><svg viewBox="0 0 24 24" width="84" height="84" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z" fill="#FFDE59"/></svg></span>
+      </div>
+    </div>
+
+    <section class="hello">
+      <h1>Happy<br>Teachers' Day!</h1>
+      <div>
+
+        <!-- ══════════════════════════════════════════════════════ -->
+        <!-- ✏️ CHANGE 1 OF 2: TEACHER'S NAME (between the <span>) -->
+        <!-- ══════════════════════════════════════════════════════ -->
+
+        <span class="name">Bhavya sir</span>
+      </div>
+    </section>
+
+    <section class="card">
+
+ <!-- ══════════════════════════════════════════════════════════ -->
+      <!-- ✏️ CHANGE 2 OF 2: PERSONAL MESSAGE (between the <p>)      -->
+      <!-- Want a line break? Just press Enter inside the text.      -->
+      <!-- ══════════════════════════════════════════════════════════ -->
+
+      <span class="tag">A note for you</span>
+      <p>We want to thank you today for every ounce of effort you put into making our classes meaningful and inspiring. Happy Teacher's Day!</p>
+    </section>
+
+    <section class="card">
+
+      <p class="msg">Teaching is more than a job. it's the quiet extra hour, the second explanation, the belief in a student before they believe in themselves. None of it goes unnoticed. Thank you for the patience, the laughter, and the light you bring to every single classroom.</p>
+    </section>
+  </main>
+
+  <footer>
+    Made with <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M12 21s-8-5.3-8-11a4.6 4.6 0 0 1 8-3.1A4.6 4.6 0 0 1 20 10c0 5.7-8 11-8 11z" fill="#FF70A6"/></svg>
+    by YOUR STUDENTS &nbsp;<!-- ← one-time edit, then copy to every file -->
+  </footer>
+
+  <script>
+    /* initials auto-generated from the name above — nothing to edit here */
+    const nameEl = document.querySelector(".name").textContent.trim();
+    if (nameEl) {
+      document.getElementById("ph").classList.remove("missing");
+      document.getElementById("init").textContent =
+        nameEl.replace(/\./g, "").split(/\s+/).filter(Boolean)
+          .map(w => w[0]).join("").slice(0, 3);
+    }
+
+    /* confetti: 3 waves over ~2s; skipped for reduced-motion users */
+    addEventListener("load", () => {
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches || !window.confetti) return;
+      const colors = ["#FFDE59", "#FF70A6", "#00E5FF", "#A3E635", "#000000"];
+      const fire = o => confetti(Object.assign({ colors, ticks: 260, scalar: 1.1 }, o));
+      setTimeout(() => {
+        fire({ particleCount: 220, spread: 110, startVelocity: 45, origin: { y: .55 } });
+        fire({ particleCount: 90, angle: 60,  spread: 60, origin: { x: 0 } });
+        fire({ particleCount: 90, angle: 120, spread: 60, origin: { x: 1 } });
+      }, 350);
+      setTimeout(() => { fire({ particleCount: 140, spread: 95, origin: { y: .4 } }); }, 1100);
+      setTimeout(() => {
+        fire({ particleCount: 90, angle: 60,  spread: 65, origin: { x: 0, y: .7 } });
+        fire({ particleCount: 90, angle: 120, spread: 65, origin: { x: 1, y: .7 } });
+      }, 1900);
+    });
+  </script>
+</body>
+</html>
