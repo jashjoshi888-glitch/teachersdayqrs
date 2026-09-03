@@ -108,7 +108,7 @@
 
       pages.forEach(fn=>{
         // FIX: Removed encodeURIComponent. Static hosts often 404 on %27 (apostrophe).
-        const href = fn; 
+        const href = 'teachers-day/' + fn; 
         const displayName = fn.replace(/\.html$/,'').replace(/-/g,' ');
         
         // Menu link
